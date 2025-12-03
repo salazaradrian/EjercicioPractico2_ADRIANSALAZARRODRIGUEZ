@@ -1,0 +1,27 @@
+<div th:fragment="contenido">
+
+<h3>Listado de Roles</h3>
+
+<a th:href="@{/roles/nuevo}" class="btn btn-success mb-3">Nuevo Rol</a>
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+    </tr>
+
+    <tr th:each="r : ${roles}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.nombre}"></td>
+        <td th:text="${r.descripcion}"></td>
+        <td>
+            <a th:href="@{'/roles/editar/' + ${r.id}}" class="btn btn-primary btn-sm">Editar</a>
+            <a th:href="@{'/roles/eliminar/' + ${r.id}}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+    </tr>
+
+</table>
+
+</div>

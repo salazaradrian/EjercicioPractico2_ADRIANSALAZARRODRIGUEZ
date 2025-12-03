@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<h2 style="text-align:center;">Ingresar al sistema</h2>
+
+<form method="post" th:action="@{/login}" style="width:300px; margin:0 auto;">
+
+    <div>
+        <label>Email:</label>
+        <input type="text" name="email" required />
+    </div>
+
+    <div>
+        <label>Contraseña:</label>
+        <input type="password" name="password" required />
+    </div>
+
+    <div style="margin-top:10px; text-align:center;">
+        <button type="submit">Ingresar</button>
+    </div>
+
+    <div th:if="${param.error}" style="color:red; text-align:center;">
+        Credenciales incorrectas
+    </div>
+
+    <div th:if="${param.logout}" style="color:green; text-align:center;">
+        Sesión finalizada
+    </div>
+
+</form>
+
+</body>
+</html>
+

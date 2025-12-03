@@ -1,0 +1,20 @@
+<div th:fragment="contenido">
+
+<h3>Usuarios Ordenados por Fecha</h3>
+
+<table class="table">
+    <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Fecha Creación</th>
+    </tr>
+
+    <tr th:each="u : ${usuarios}">
+        <td th:text="${u.nombre + ' ' + u.apellido}"></td>
+        <td th:text="${u.email}"></td>
+        <td th:text="${u.fechaCreacion}"></td>
+    </tr>
+</table>
+
+</div>
+

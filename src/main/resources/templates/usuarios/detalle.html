@@ -1,0 +1,12 @@
+<div th:fragment="contenido">
+
+<h3>Detalle de Usuario</h3>
+
+<p><b>Nombre:</b> <span th:text="${usuario.nombre}"></span></p>
+<p><b>Apellido:</b> <span th:text="${usuario.apellido}"></span></p>
+<p><b>Email:</b> <span th:text="${usuario.email}"></span></p>
+<p><b>Rol:</b> <span th:text="${usuario.rol.nombre}"></span></p>
+
+<a th:href="@{/usuarios}" class="btn btn-secondary">Volver</a>
+
+</div>
