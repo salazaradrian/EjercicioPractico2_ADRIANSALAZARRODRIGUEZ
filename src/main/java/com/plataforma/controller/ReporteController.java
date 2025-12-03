@@ -8,6 +8,7 @@ public class ReporteController {
 
     @GetMapping("/reportes")
     public String reportes() {
-        return "reportes";
+        return "reportes/index";
     }
 }
+

@@ -10,7 +10,10 @@ public class PerfilController {
 
     @GetMapping("/perfil")
     public String perfil(Model model, Authentication auth) {
+
         model.addAttribute("email", auth.getName());
-        return "perfil";
+
+        return "perfil/index";
     }
 }
+

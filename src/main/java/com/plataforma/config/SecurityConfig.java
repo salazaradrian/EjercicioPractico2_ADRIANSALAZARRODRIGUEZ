@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,13 +25,11 @@ public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
 
-    // BCrypt para encriptar contraseñas
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // Proveedor de autenticación
     @Bean
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -38,12 +38,25 @@ public class SecurityConfig {
         return auth;
     }
 
-    // Redirección después del login según rol
+    // ***** ESTE BEAN ES LO QUE TE FALTABA *****
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http,
+                                                       DaoAuthenticationProvider authProvider) throws Exception {
+
+        AuthenticationManagerBuilder builder =
+                http.getSharedObject(AuthenticationManagerBuilder.class);
+
+        builder.authenticationProvider(authProvider);
+
+        return builder.build();
+    }
+
     @Bean
     public AuthenticationSuccessHandler successHandler() {
         return (request, response, authentication) -> {
 
-            String rol = authentication.getAuthorities().iterator().next().getAuthority();
+            String rol = authentication.getAuthorities()
+                    .iterator().next().getAuthority();
 
             switch (rol) {
                 case "ROLE_ADMIN":
@@ -64,31 +77,17 @@ public class SecurityConfig {
         };
     }
 
-    // Filtro principal de seguridad
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/login",
-                                "/css/**",
-                                "/js/**",
-                                "/images/**",
-                                "/error/**"
-                        ).permitAll()
-
-                        // Rutas ADMIN
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/error/**")
+                                .permitAll()
                         .requestMatchers("/usuarios/**", "/roles/**").hasRole("ADMIN")
-
-                        // Rutas PROFESOR
                         .requestMatchers("/reportes/**").hasRole("PROFESOR")
-
-                        // Rutas ESTUDIANTE
                         .requestMatchers("/perfil/**").hasRole("ESTUDIANTE")
-
-                        // cualquier otra ruta requiere login
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

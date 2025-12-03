@@ -1,23 +1,51 @@
 <div th:fragment="contenido">
 
-<h3 th:text="${rol.id == null ? 'Nuevo Rol' : 'Editar Rol'}"></h3>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
 
-<form th:action="@{/roles/guardar}" method="post" th:object="${rol}">
+                <div class="card shadow-lg border-0 rounded-4 p-4">
 
-    <input type="hidden" th:field="*{id}"/>
+                    <!-- Título dinámico -->
+                    <h3 class="text-center mb-4" 
+                        style="color: #2c3e50; font-weight: 700;"
+                        th:text="${rol.id == null ? 'Nuevo Rol' : 'Editar Rol'}">
+                    </h3>
 
-    <div class="mb-3">
-        <label>Nombre</label>
-        <input th:field="*{nombre}" class="form-control">
+                    <form th:action="@{/roles/guardar}" method="post" th:object="${rol}">
+
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                            <label class="fw-semibold" style="color: #34495e;">Nombre</label>
+                            <input th:field="*{nombre}" 
+                                   class="form-control rounded-3 shadow-sm" 
+                                   placeholder="Nombre del rol" required>
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="mb-3">
+                            <label class="fw-semibold" style="color: #34495e;">Descripción</label>
+                            <input th:field="*{descripcion}" 
+                                   class="form-control rounded-3 shadow-sm"
+                                   placeholder="Descripción del rol" required>
+                        </div>
+
+                        <!-- Botón -->
+                        <div class="text-center mt-4">
+                            <button class="btn btn-success px-4 py-2 fw-semibold rounded-3">
+                                Guardar
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label>Descripción</label>
-        <input th:field="*{descripcion}" class="form-control">
-    </div>
-
-    <button class="btn btn-success">Guardar</button>
-
-</form>
 
 </div>
+

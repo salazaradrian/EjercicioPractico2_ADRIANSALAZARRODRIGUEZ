@@ -1,12 +1,118 @@
-<div th:fragment="contenido">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Usuario</title>
 
-<h3>Detalle de Usuario</h3>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<p><b>Nombre:</b> <span th:text="${usuario.nombre}"></span></p>
-<p><b>Apellido:</b> <span th:text="${usuario.apellido}"></span></p>
-<p><b>Email:</b> <span th:text="${usuario.email}"></span></p>
-<p><b>Rol:</b> <span th:text="${usuario.rol.nombre}"></span></p>
+    <style>
+        body {
+            background: #eef2f7;
+        }
 
-<a th:href="@{/usuarios}" class="btn btn-secondary">Volver</a>
+        .card {
+            border-radius: 18px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border: none;
+        }
 
+        h2 {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .list-group-item {
+            font-size: 1.1rem;
+            padding: 14px 22px;
+            border: none;
+            border-bottom: 1px solid #e4e8ec;
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .label-title {
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .icon-title {
+            font-size: 2.3rem;
+            color: #377dff;
+        }
+
+        .btn-back {
+            border-radius: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container py-5" th:fragment="contenido">
+
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+
+            <div class="card p-4">
+
+                <!-- Encabezado con ícono -->
+                <div class="text-center mb-4">
+                    <div class="icon-title mb-2">👤</div>
+                    <h2>Detalle del Usuario</h2>
+                </div>
+
+                <ul class="list-group">
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="label-title">ID:</span>
+                        <b th:text="${usuario.id}"></b>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="label-title">Nombre:</span>
+                        <b th:text="${usuario.nombre}"></b>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="label-title">Apellido:</span>
+                        <b th:text="${usuario.apellido}"></b>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="label-title">Email:</span>
+                        <b th:text="${usuario.email}"></b>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="label-title">Rol:</span>
+                        <b th:text="${usuario.rol.nombre}"></b>
+                    </li>
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="label-title">Activo:</span>
+                        <b th:text="${usuario.activo ? 'Sí' : 'No'}"></b>
+                    </li>
+
+                </ul>
+
+                <!-- Botón "Volver" (opcional) -->
+                <div class="text-center mt-4">
+                    <a th:href="@{/usuarios/listado}" 
+                       class="btn btn-secondary btn-back px-4 py-2">
+                        ← Volver
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </div>
+
+</body>
+</html>

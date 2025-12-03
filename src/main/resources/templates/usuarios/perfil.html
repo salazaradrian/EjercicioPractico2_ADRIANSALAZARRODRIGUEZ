@@ -1,9 +1,34 @@
 <div th:fragment="contenido">
 
-<h3>Mi Perfil</h3>
+    <!-- Contenedor principal -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
 
-<p>Bienvenido estudiante</p>
+                <!-- Tarjeta -->
+                <div class="card shadow-lg border-0 rounded-4 p-4" 
+                     style="background: #ffffff;">
+                    
+                    <h3 class="text-center mb-3" style="color: #2c3e50; font-weight: 700;">
+                        Mi Perfil
+                    </h3>
 
-<p><b>Correo:</b> <span th:text="${email}"></span></p>
+                    <p class="text-center" style="font-size: 1.1rem; color: #6c757d;">
+                        Bienvenido estudiante
+                    </p>
+
+                    <hr>
+
+                    <p style="font-size: 1.1rem;">
+                        <b style="color: #34495e;">Correo:</b> 
+                        <span th:text="${email}" style="color: #2c3e50;"></span>
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
+

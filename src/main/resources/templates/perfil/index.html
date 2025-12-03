@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: contenido}">
+
+<div class="py-4">
+
+    <h2 class="mb-3">Mi Perfil</h2>
+
+    <p class="mb-4">
+        Esta es tu información básica dentro del sistema académico.
+        (Datos de ejemplo)
+    </p>
+
+    <!-- Card simple -->
+    <div class="card shadow-sm border-0 rounded-4 p-4" style="max-width: 600px;">
+
+        <h4 class="fw-bold mb-3">Datos del Estudiante</h4>
+
+        <p class="mb-2"><strong>Nombre:</strong> Juan Pérez</p>
+
+        <p class="mb-2"><strong>Correo:</strong>
+            <span sec:authentication="name"></span>
+        </p>
+
+        <p class="mb-2"><strong>Cédula:</strong> 1-1234-5678</p>
+
+        <p class="mb-2"><strong>Teléfono:</strong> 8888-8888</p>
+
+        <p class="mb-2"><strong>Carrera:</strong> Ingeniería Informática</p>
+
+        <p class="mb-2"><strong>Estado:</strong>
+            <span class="badge bg-success">Activo</span>
+        </p>
+
+    </div>
+
+</div>
+
+</html>
+
+
+
+

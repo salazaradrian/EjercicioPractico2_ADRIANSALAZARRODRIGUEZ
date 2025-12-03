@@ -3,6 +3,7 @@ package com.plataforma.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Data
 @Entity
@@ -32,6 +33,8 @@ public class Usuario {
     @JoinColumn(name = "rol_id", nullable = false)
     private Rol rol;
 
+    @CreationTimestamp     // ⬅⬅⬅ ESTA LÍNEA SOLUCIONA EL ERROR
     @Column(name = "fecha_creacion", updatable = false)
     private LocalDateTime fechaCreacion;
 }
+

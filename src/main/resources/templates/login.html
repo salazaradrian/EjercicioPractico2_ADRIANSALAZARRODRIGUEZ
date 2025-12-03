@@ -1,38 +1,103 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            width: 350px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .msg {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .error { color: red; }
+        .logout { color: green; }
+    </style>
+
 </head>
 <body>
 
-<h2 style="text-align:center;">Ingresar al sistema</h2>
+<div class="login-container">
 
-<form method="post" th:action="@{/login}" style="width:300px; margin:0 auto;">
+    <h2>Iniciar Sesión</h2>
 
-    <div>
-        <label>Email:</label>
-        <input type="text" name="email" required />
-    </div>
+    <form th:action="@{/login}" method="post">
 
-    <div>
-        <label>Contraseña:</label>
-        <input type="password" name="password" required />
-    </div>
+    <label>Email</label>
+    <input type="text" name="email" required>
 
-    <div style="margin-top:10px; text-align:center;">
-        <button type="submit">Ingresar</button>
-    </div>
+    <label>Contraseña</label>
+    <input type="password" name="password" required>
 
-    <div th:if="${param.error}" style="color:red; text-align:center;">
+    <button type="submit">Entrar</button>
+
+    <div class="msg error" th:if="${param.error}">
         Credenciales incorrectas
     </div>
 
-    <div th:if="${param.logout}" style="color:green; text-align:center;">
-        Sesión finalizada
+    <div class="msg logout" th:if="${param.logout}">
+        Sesión cerrada correctamente
     </div>
 
 </form>
 
+
+</div>
+
 </body>
 </html>
-

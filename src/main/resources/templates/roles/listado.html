@@ -1,27 +1,76 @@
 <div th:fragment="contenido">
 
-<h3>Listado de Roles</h3>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
 
-<a th:href="@{/roles/nuevo}" class="btn btn-success mb-3">Nuevo Rol</a>
+                <div class="card shadow border-0 rounded-4 p-4"
+                     style="background: #ffffff;">
 
-<table class="table table-striped">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Acciones</th>
-    </tr>
+                    <!-- Título -->
+                    <div class="d-flex align-items-center mb-3">
+                        <span style="font-size: 2rem; margin-right: 10px; color: #377dff;">🛡️</span>
+                        <h3 class="m-0" style="color: #2c3e50; font-weight: 700;">
+                            Listado de Roles
+                        </h3>
+                    </div>
 
-    <tr th:each="r : ${roles}">
-        <td th:text="${r.id}"></td>
-        <td th:text="${r.nombre}"></td>
-        <td th:text="${r.descripcion}"></td>
-        <td>
-            <a th:href="@{'/roles/editar/' + ${r.id}}" class="btn btn-primary btn-sm">Editar</a>
-            <a th:href="@{'/roles/eliminar/' + ${r.id}}" class="btn btn-danger btn-sm">Eliminar</a>
-        </td>
-    </tr>
+                    <!-- Línea decorativa -->
+                    <hr style="border-top: 2px solid #377dff; width: 90px; margin-top: 0;">
 
-</table>
+                    <!-- Botón Nuevo Rol -->
+                    <a th:href="@{/roles/nuevo}" 
+                       class="btn btn-success mb-3 px-4 fw-semibold rounded-3 shadow-sm">
+                        + Nuevo Rol
+                    </a>
+
+                    <!-- Tabla -->
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+
+                            <thead style="background: #2c3e50; color: white;">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr th:each="r : ${roles}" 
+                                    style="transition: transform .15s;">
+                                    <td th:text="${r.id}"></td>
+                                    <td th:text="${r.nombre}"></td>
+                                    <td th:text="${r.descripcion}"></td>
+
+                                    <td class="text-center">
+
+                                        <!-- Botón Editar -->
+                                        <a th:href="@{'/roles/editar/' + ${r.id}}" 
+                                           class="btn btn-primary btn-sm me-2 px-3 rounded-3 shadow-sm">
+                                            Editar
+                                        </a>
+
+                                        <!-- Botón Eliminar -->
+                                        <a th:href="@{'/roles/eliminar/' + ${r.id}}" 
+                                           class="btn btn-danger btn-sm px-3 rounded-3 shadow-sm">
+                                            Eliminar
+                                        </a>
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
